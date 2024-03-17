@@ -8,13 +8,14 @@ import {
 import { dataProvider } from "./dataProvider";
 import { authProvider } from "./authProvider";
 import { UserShow } from "./user/UserShow";
+import { UserEdit } from "./user/UserEdit";
 
 export const App = () => (
   <Admin dataProvider={dataProvider} authProvider={authProvider}>
     <Resource
       name="user"
       list={ListGuesser}
-      edit={EditGuesser}
+      edit={UserEdit}
       show={UserShow}
     />
     <Resource
