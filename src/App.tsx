@@ -7,6 +7,7 @@ import {
 } from "react-admin";
 import { dataProvider } from "./dataProvider";
 import { authProvider } from "./authProvider";
+import { UserShow } from "./user/UserShow";
 
 export const App = () => (
   <Admin dataProvider={dataProvider} authProvider={authProvider}>
@@ -14,7 +15,7 @@ export const App = () => (
       name="user"
       list={ListGuesser}
       edit={EditGuesser}
-      show={ShowGuesser}
+      show={UserShow}
     />
     <Resource
       name="address"
