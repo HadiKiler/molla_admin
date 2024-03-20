@@ -21,7 +21,12 @@ import { CategoryList } from "./category/CategoryList";
 import { CategoryCreate } from "./category/CategoryCreate";
 import { CategoryEdit } from "./category/CategoryEdit";
 import { PaymentList } from "./payment/PaymentList";
+import { AddressList } from "./address/AddressList";
+import { AddressEdit } from "./address/AddressEdit";
+import { AddressShow } from "./address/AddressShow";
+import { FeedBackList } from "./feedback/FeedBackList";
 import { PaymentShow } from "./payment/PaymentShow";
+import { FeedBackShow } from "./feedback/FeedBackShow";
 
 export const App = () => (
   <Admin dataProvider={dataProvider} authProvider={authProvider}>
@@ -34,9 +39,9 @@ export const App = () => (
     />
     <Resource
       name="address"
-      list={ListGuesser}
-      edit={EditGuesser}
-      show={ShowGuesser}
+      list={AddressList}
+      edit={AddressEdit}
+      show={AddressShow}
     />
     <Resource
       name="log"
@@ -71,9 +76,8 @@ export const App = () => (
     />
     <Resource
       name="feedback"
-      list={ListGuesser}
-      edit={EditGuesser}
-      show={ShowGuesser}
+      list={FeedBackList}
+      show={FeedBackShow}
     />
   </Admin>
 );
