@@ -9,7 +9,7 @@ export const ProductCreate = () => (
             <TextInput source="name" validate={[required()]} />
             <TextInput source="description" />
             <TextInput source="price" validate={[required()]} />
-            <ImageInput source="image" accept="image/*">
+            <ImageInput source="image" accept="image/*" validate={[required()]}>
                 <ImageField source="src" title="title" />
             </ImageInput>
         </SimpleForm>

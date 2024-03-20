@@ -13,12 +13,21 @@ import { UserCreate } from "./user/UserCreate";
 import { ProductCreate } from "./product/ProductCreate";
 import { ProductEdit } from "./product/ProductEdit";
 import { ProductList } from "./product/ProductList";
+import { OrderList } from "./order/OrderList";
+import { OrderShow } from "./order/OrderShow";
+import { OrderEdit } from "./order/OrderEdit";
+import { UserList } from "./user/UserList";
+import { CategoryList } from "./category/CategoryList";
+import { CategoryCreate } from "./category/CategoryCreate";
+import { CategoryEdit } from "./category/CategoryEdit";
+import { PaymentList } from "./payment/PaymentList";
+import { PaymentShow } from "./payment/PaymentShow";
 
 export const App = () => (
   <Admin dataProvider={dataProvider} authProvider={authProvider}>
     <Resource
       name="user"
-      list={ListGuesser}
+      list={UserList}
       edit={UserEdit}
       show={UserShow}
       create={UserCreate}
@@ -37,15 +46,16 @@ export const App = () => (
     />
     <Resource
       name="order"
-      list={ListGuesser}
-      edit={EditGuesser}
-      show={ShowGuesser}
+      list={OrderList}
+      edit={OrderEdit}
+      show={OrderShow}
     />
     <Resource
       name="category"
-      list={ListGuesser}
-      edit={EditGuesser}
+      list={CategoryList}
+      edit={CategoryEdit}
       show={ShowGuesser}
+      create={CategoryCreate}
     />
     <Resource
       name="product"
@@ -56,9 +66,8 @@ export const App = () => (
     />
     <Resource
       name="payment"
-      list={ListGuesser}
-      edit={EditGuesser}
-      show={ShowGuesser}
+      list={PaymentList}
+      show={PaymentShow}
     />
     <Resource
       name="feedback"
