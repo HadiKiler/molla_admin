@@ -6,7 +6,7 @@ import {
   ShowGuesser,
 } from "react-admin";
 import { dataProvider } from "./dataProvider";
-import { authProvider } from "./authProvider";
+// import { authProvider } from "./authProvider";
 import { UserShow } from "./user/UserShow";
 import { UserEdit } from "./user/UserEdit";
 import { UserCreate } from "./user/UserCreate";
@@ -27,6 +27,7 @@ import { AddressShow } from "./address/AddressShow";
 import { FeedBackList } from "./feedback/FeedBackList";
 import { PaymentShow } from "./payment/PaymentShow";
 import { FeedBackShow } from "./feedback/FeedBackShow";
+import authProvider from "./authProvider";
 
 export const App = () => (
   <Admin dataProvider={dataProvider} authProvider={authProvider}>

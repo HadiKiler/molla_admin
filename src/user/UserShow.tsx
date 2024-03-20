@@ -1,5 +1,5 @@
 // in src/posts.jsx
-import { Show, SimpleShowLayout, BooleanField, TextField, DateField, RichTextField, EmailField } from 'react-admin';
+import { Show, SimpleShowLayout, BooleanField, TextField,ImageField, EmailField } from 'react-admin';
 
 export const UserShow = () => (
     <Show>
@@ -8,6 +8,7 @@ export const UserShow = () => (
             <TextField source="password" />
             <EmailField source="email" />
             <BooleanField source="is_admin" />
+            <ImageField source="image" title="title" />
         </SimpleShowLayout>
     </Show>
     )

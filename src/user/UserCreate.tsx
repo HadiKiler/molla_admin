@@ -1,6 +1,6 @@
 // in src/posts.js
 import * as React from 'react';
-import {BooleanInput, Create, SimpleForm, TextInput, DateInput, required } from 'react-admin';
+import {BooleanInput,ImageField,ImageInput, Create, SimpleForm, TextInput, DateInput, required, EmailField } from 'react-admin';
 
 export const UserCreate = () => (
     <Create>
@@ -9,6 +9,9 @@ export const UserCreate = () => (
                 <TextInput source="password" validate={required()} />
                 <TextInput source="email" validate={required()} />
                 <BooleanInput source="is_admin" />  
+                <ImageInput source="image" accept="image/*" validate={[required()]}>
+                    <ImageField source="src" title="title" />
+                </ImageInput>
         </SimpleForm>
     </Create>
 );

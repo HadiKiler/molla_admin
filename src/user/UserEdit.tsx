@@ -1,5 +1,5 @@
 // in src/posts.js
-import {BooleanInput, Edit, SimpleForm, TextInput, DateInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton, required } from 'react-admin';
+import {BooleanInput, Edit, SimpleForm, TextInput,ImageField,ImageInput, required } from 'react-admin';
 
 export const UserEdit = () => (
     <Edit>
@@ -8,6 +8,9 @@ export const UserEdit = () => (
             <TextInput source="password" validate={required()} />
             <TextInput source="email" validate={required()} />
             <BooleanInput source="is_admin" />  
+            <ImageInput source="image" accept="image/*" validate={[required()]}>
+                <ImageField source="src" title="title" />
+            </ImageInput>
      </SimpleForm>
     </Edit>
 );
