@@ -1,10 +1,3 @@
-// import simpleRestProvider from "ra-data-simple-rest";
-
-// export const dataProvider = simpleRestProvider(
-//   import.meta.env.VITE_SIMPLE_REST_URL
-// );
-
-import { BlobOptions } from "buffer";
 import simpleRestDataProvider from "ra-data-simple-rest";
 import {
   CreateParams,
@@ -13,8 +6,30 @@ import {
   fetchUtils,
 } from "react-admin";
 
+
+// export const dataProvider = simpleRestProvider(
+//   import.meta.env.VITE_SIMPLE_REST_URL, httpClient
+// );
+
+
+const httpClient = (url: string, options: fetchUtils.Options = {}) => {
+  const customHeaders = (options.headers ||
+      new Headers({
+          Accept: 'application/json',
+      })) as Headers;    
+  // add your own headers here    
+  const user_id = JSON.parse(localStorage.getItem('auth')).id
+  customHeaders.set('user', user_id);
+  options.headers = customHeaders;
+  return fetchUtils.fetchJson(url, options);
+}  
+
+
+
+
+
 const endpoint = "http://localhost:5000/";
-const baseDataProvider = simpleRestDataProvider(endpoint);
+const baseDataProvider = simpleRestDataProvider(endpoint, httpClient);
 
 type ProductParams = {
   id: string;
@@ -68,6 +83,7 @@ const createUserFormData = (
 };
 
 
+const user_id = new Headers({"user":JSON.parse(localStorage.getItem('auth')).id})
 
 export const dataProvider: DataProvider = {
   ...baseDataProvider,
@@ -77,7 +93,8 @@ export const dataProvider: DataProvider = {
       return fetchUtils
         .fetchJson(`${endpoint}/${resource}`, {
           method: "POST",
-          body: formData
+          body: formData,
+          headers: user_id
         })
         .then(({ json }) => ({ data: json }));
     }
@@ -86,7 +103,8 @@ export const dataProvider: DataProvider = {
       return fetchUtils
         .fetchJson(`${endpoint}/${resource}`, {
           method: "POST",
-          body: formData
+          body: formData,
+          headers: user_id
         })
         .then(({ json }) => ({ data: json }));
     }
@@ -101,6 +119,7 @@ export const dataProvider: DataProvider = {
         .fetchJson(`${endpoint}/${resource}/${params.id}`, {
           method: "PUT",
           body: formData,
+          headers: user_id
         })
         .then(({ json }) => ({ data: json }));
     }
@@ -111,9 +130,11 @@ export const dataProvider: DataProvider = {
         .fetchJson(`${endpoint}/${resource}/${params.id}`, {
           method: "PUT",
           body: formData,
+          headers: user_id
         })
         .then(({ json }) => ({ data: json }));
     }
     return baseDataProvider.update(resource, params);
   },
 };
+

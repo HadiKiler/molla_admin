@@ -46,6 +46,8 @@
 
 
 // in src/authProvider.js
+import { hostname } from 'os';
+import Cookies from 'universal-cookie';
 const authProvider = {
   login: ({ username, password }) =>  {
       const request = new Request('http://localhost:5000/admin/login', {
@@ -61,8 +63,7 @@ const authProvider = {
               return response.json();
           })
           .then(auth => {
-              console.log(auth)
-              localStorage.setItem('auth', JSON.stringify(auth));
+                localStorage.setItem('auth', JSON.stringify(auth));
           })
           .catch((err) => {
               throw new Error(err)

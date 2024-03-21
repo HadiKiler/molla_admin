@@ -28,6 +28,8 @@ import { FeedBackList } from "./feedback/FeedBackList";
 import { PaymentShow } from "./payment/PaymentShow";
 import { FeedBackShow } from "./feedback/FeedBackShow";
 import authProvider from "./authProvider";
+import { LogList } from "./log/LogList";
+import { LogShow } from "./log/LogShow";
 
 export const App = () => (
   <Admin dataProvider={dataProvider} authProvider={authProvider}>
@@ -46,9 +48,8 @@ export const App = () => (
     />
     <Resource
       name="log"
-      list={ListGuesser}
-      edit={EditGuesser}
-      show={ShowGuesser}
+      list={LogList}
+      show={LogShow}
     />
     <Resource
       name="order"
