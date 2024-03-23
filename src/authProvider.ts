@@ -50,7 +50,7 @@ import { hostname } from 'os';
 import Cookies from 'universal-cookie';
 const authProvider = {
   login: ({ username, password }) =>  {
-      const request = new Request('http://localhost:5000/admin/login', {
+      const request = new Request(import.meta.env.VITE_SIMPLE_REST_URL + '/admin/login', {
           method: 'POST',
           body: JSON.stringify({ username, password }),
           headers: new Headers({ 'Content-Type': 'application/json' }),

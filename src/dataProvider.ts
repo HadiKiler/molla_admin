@@ -26,9 +26,7 @@ const httpClient = (url: string, options: fetchUtils.Options = {}) => {
 
 
 
-
-
-const endpoint = "http://localhost:5000/";
+const endpoint = import.meta.env.VITE_SIMPLE_REST_URL
 const baseDataProvider = simpleRestDataProvider(endpoint, httpClient);
 
 type ProductParams = {
@@ -49,6 +47,17 @@ type UserParams = {
   password: string;
   is_admin: string;
   email: string;
+  image: {
+    rawFile: File;
+    src?: string;
+    title?: string;
+  };
+};
+
+type CategoryParams = {
+  id: string;
+  name: string;
+  description: string;
   image: {
     rawFile: File;
     src?: string;
@@ -82,6 +91,16 @@ const createUserFormData = (
   return formData;
 };
 
+const createCategoryFormData = (
+  params: CreateParams<CategoryParams> | UpdateParams<CategoryParams>
+) => {
+  const formData = new FormData();
+  params.data.name && formData.append("name", params.data.name);
+  params.data.description && formData.append("description", params.data.description);
+  params.data.image?.rawFile && formData.append("image", params.data.image.rawFile);
+
+  return formData;
+};
 
 const user_id = new Headers({"user":JSON.parse(localStorage.getItem('auth')).id})
 
@@ -108,6 +127,16 @@ export const dataProvider: DataProvider = {
         })
         .then(({ json }) => ({ data: json }));
     }
+    else if (resource === "category") {
+      const formData = createCategoryFormData(params);
+      return fetchUtils
+        .fetchJson(`${endpoint}/${resource}`, {
+          method: "POST",
+          body: formData,
+          headers: user_id
+        })
+        .then(({ json }) => ({ data: json }));
+    }
 
     return baseDataProvider.create(resource, params);
   },
@@ -125,6 +154,17 @@ export const dataProvider: DataProvider = {
     }
     else if (resource === "user") {
       const formData = createUserFormData(params);
+      formData.append("id", params.id);
+      return fetchUtils
+        .fetchJson(`${endpoint}/${resource}/${params.id}`, {
+          method: "PUT",
+          body: formData,
+          headers: user_id
+        })
+        .then(({ json }) => ({ data: json }));
+    }
+    else if (resource === "category") {
+      const formData = createCategoryFormData(params);
       formData.append("id", params.id);
       return fetchUtils
         .fetchJson(`${endpoint}/${resource}/${params.id}`, {
