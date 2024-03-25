@@ -9,6 +9,8 @@ export const UserList = () => (
             <BooleanField source="is_admin" />
             <EmailField source="email" />
             <TextField source="register_date" />
+            <ImageField source="image" />
+            
         </Datagrid>
     </List>
 );

@@ -8,7 +8,6 @@ export const AddressList = () => (
             <ReferenceField source="order_id" reference='order'/>
             <TextField source="country" />
             <TextField source="city" />
-            <TextField source="address" />
             <TextField source="postal_code" />
         </Datagrid>
     </List>

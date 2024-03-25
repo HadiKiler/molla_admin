@@ -7,7 +7,7 @@ export const AddressEdit = () => (
             <ReferenceInput source="order_id" reference='order'/>
             <TextInput source="country" />
             <TextInput source="city" />
-            <TextInput source="address" />
+            <TextInput source="street" />
             <TextInput source="postal_code" />
        </SimpleForm>
     </Edit>

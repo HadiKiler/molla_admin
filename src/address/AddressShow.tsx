@@ -8,7 +8,7 @@ export const AddressShow = () => (
             <ReferenceField source="order_id" reference='order'/>
             <TextField source="country" />
             <TextField source="city" />
-            <TextField source="address" />
+            <TextField source="street" />
             <TextField source="postal_code" />
         </SimpleShowLayout>
     </Show>

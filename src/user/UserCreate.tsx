@@ -9,9 +9,6 @@ export const UserCreate = () => (
                 <TextInput source="password" validate={required()} />
                 <TextInput source="email" validate={required()} />
                 <BooleanInput source="is_admin" />  
-                <ImageInput source="image" accept="image/*" validate={[required()]}>
-                    <ImageField source="src" title="title" />
-                </ImageInput>
         </SimpleForm>
     </Create>
 );
