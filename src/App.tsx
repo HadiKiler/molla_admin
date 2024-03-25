@@ -34,7 +34,7 @@ import { LogList } from "./log/LogList";
 import { LogShow } from "./log/LogShow";
 
 export const App = () => (
-  <Admin dataProvider={dataProvider} authProvider={authProvider}>
+  <Admin dataProvider={dataProvider} authProvider={authProvider} theme={radiantLightTheme} darkTheme={radiantDarkTheme}>
     <Resource
       name="user"
       list={UserList}
