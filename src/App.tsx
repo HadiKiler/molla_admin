@@ -32,9 +32,13 @@ import { FeedBackShow } from "./feedback/FeedBackShow";
 import authProvider from "./authProvider";
 import { LogList } from "./log/LogList";
 import { LogShow } from "./log/LogShow";
+import dashbord from "./dashbord";
+
+
+
 
 export const App = () => (
-  <Admin dataProvider={dataProvider} authProvider={authProvider} theme={radiantLightTheme} darkTheme={radiantDarkTheme}>
+  <Admin dataProvider={dataProvider} authProvider={authProvider} theme={radiantLightTheme} darkTheme={radiantDarkTheme} dashboard={dashbord} >
     <Resource
       name="user"
       list={UserList}
