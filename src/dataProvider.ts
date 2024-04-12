@@ -18,7 +18,12 @@ const httpClient = (url: string, options: fetchUtils.Options = {}) => {
           Accept: 'application/json',
       })) as Headers;    
   // add your own headers here    
-  const user_id = JSON.parse(localStorage.getItem('auth')).id
+  let user_id = null
+  try{
+    user_id = JSON.parse(localStorage.getItem('auth')).id
+  }catch{
+    user_id=null
+  }
   customHeaders.set('user', user_id);
   options.headers = customHeaders;
   return fetchUtils.fetchJson(url, options);
@@ -102,7 +107,13 @@ const createCategoryFormData = (
   return formData;
 };
 
-const user_id = new Headers({"user":JSON.parse(localStorage.getItem('auth')).id})
+let user = null
+try{
+  user = JSON.parse(localStorage.getItem('auth')).id
+}catch{
+  user = null
+}
+const user_id = new Headers({"user":user})
 
 export const dataProvider: DataProvider = {
   ...baseDataProvider,
