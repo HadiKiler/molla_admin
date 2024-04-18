@@ -2,6 +2,7 @@
   "name": "admin",
   "private": true,
   "scripts": {
+    "start":"run dev",
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
